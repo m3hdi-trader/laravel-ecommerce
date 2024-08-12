@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
 @section('title')
-    create categories
+    edit categories
 @endsection
 
 @section('script')
