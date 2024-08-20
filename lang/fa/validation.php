@@ -154,12 +154,18 @@ return [
         'newpassword_confirmation' => 'تکرار رمز عبور جدید',
         'longitude'             => 'طول جغرافیایی',
         'latitude'              => 'عرض جغرافیایی',
-        'slug' => 'نامک',
-        'parent_id' => 'والد',
-        'attribute_ids' => 'نامک',
-        'slug' => 'ویژگی',
+        'slug'                  => 'نامک',
+        'parent_id'              => 'والد',
+        'attribute_ids'          => 'نامک',
+        'slug'                  => 'ویژگی',
         'attribute_Is_Filter_ids' => 'ویژگی های قابل فیلتر',
-        'variation_id' => 'ویژگی متغییر',
+        'variation_id'              => 'ویژگی متغییر',
+        'brand_id'                 => 'برند',
+        'tag_ids' => 'تگ',
+        'primary_image' => 'تصویر اصلی',
+        'category_id' => 'دسته بندی',
+        'images' => 'تصاویر'
+
 
     ],
 

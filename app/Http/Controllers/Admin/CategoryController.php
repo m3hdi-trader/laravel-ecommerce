@@ -47,8 +47,10 @@ class CategoryController extends Controller
             'slug' => 'required|unique:categories,slug',
             'parent_id' => 'required',
             'attribute_ids' => 'required',
+            'attribute_ids.*' => 'exists:attributes,id',
             'attribute_Is_Filter_ids' => 'required',
-            'variation_id' => 'required',
+            'attribute_Is_Filter_ids' => 'exists:attributes,id',
+            'variation_id' => 'required|exists:attributes,id',
         ]);
 
         try {
@@ -122,8 +124,10 @@ class CategoryController extends Controller
             'slug' => 'required|unique:categories,slug,' . $category->id,
             'parent_id' => 'required',
             'attribute_ids' => 'required',
+            'attribute_ids.*' => 'exists:attributes,id',
             'attribute_Is_Filter_ids' => 'required',
-            'variation_id' => 'required',
+            'attribute_Is_Filter_ids' => 'exists:attributes,id',
+            'variation_id' => 'required|exists:attributes,id',
         ]);
 
         try {
@@ -166,5 +170,12 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getCategoryAttributes(Category $category)
+    {
+        $attribute = $category->attributes()->wherePivot('is_variation', 0)->get();
+        $variation = $category->attributes()->wherePivot('is_variation', 1)->first();
+        return ['attribute' => $attribute, 'variation' => $variation];
     }
 }
