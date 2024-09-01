@@ -84,8 +84,7 @@
                                         </div>
 
                                         <div class="shopping-cart-img">
-                                            <a href="#"><img alt=""
-                                                    src="assets/img/cart/cart-1.svg" /></a>
+                                            <a href="#"><img alt="" src="#" /></a>
                                             <div class="item-close">
                                                 <a href="#"><i class="sli sli-close"></i></a>
                                             </div>
@@ -97,8 +96,7 @@
                                             <span>1 x 9,000</span>
                                         </div>
                                         <div class="shopping-cart-img">
-                                            <a href="#"><img alt=""
-                                                    src="assets/img/cart/cart-2.svg" /></a>
+                                            <a href="#"><img alt="" src="#" /></a>
                                             <div class="item-close">
                                                 <a href="#"><i class="sli sli-close"></i></a>
                                             </div>
@@ -133,11 +131,14 @@
                             </button>
                             <div class="setting-content">
                                 <ul class="text-right">
-                                    <li><a href="login.html">ورود</a></li>
-                                    <li>
-                                        <a href="register.html">ایجاد حساب</a>
-                                    </li>
-                                    <li><a href="my-account.html">پروفایل</a></li>
+                                    @auth
+                                        <li><a href="my-account.html">پروفایل</a></li>
+                                    @else
+                                        <li><a href="{{ route('login') }}">ورود</a></li>
+                                        <li>
+                                            <a href="{{ route('register') }}">ایجاد حساب</a>
+                                        </li>
+                                    @endauth
                                 </ul>
                             </div>
                         </div>
@@ -203,8 +204,7 @@
                                         </div>
 
                                         <div class="shopping-cart-img">
-                                            <a href="#"><img alt=""
-                                                    src="assets/img/cart/cart-1.svg" /></a>
+                                            <a href="#"><img alt="" src="#" /></a>
                                             <div class="item-close">
                                                 <a href="#"><i class="sli sli-close"></i></a>
                                             </div>
@@ -216,8 +216,7 @@
                                             <span>1 x 9,000</span>
                                         </div>
                                         <div class="shopping-cart-img">
-                                            <a href="#"><img alt=""
-                                                    src="assets/img/cart/cart-2.svg" /></a>
+                                            <a href="#"><img alt="" src="#" /></a>
                                             <div class="item-close">
                                                 <a href="#"><i class="sli sli-close"></i></a>
                                             </div>
