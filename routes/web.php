@@ -14,6 +14,7 @@ use App\Http\Controllers\Home\CommentController as HomeCommentController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
 use App\Http\Controllers\Home\UserProfileController;
+use App\Http\Controllers\Home\WishlistController;
 use App\Models\User;
 use App\Notifications\OTPSms;
 use Ghasedak\GhasedakApi;
@@ -34,6 +35,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/categories/{category:slug}', [HomeCategoryController::class, 'show'])->name('home.categories.show');
 Route::get('/products/{product:slug}', [HomeProductController::class, 'show'])->name('home.products.show');
 Route::post('/comments/{product}', [HomeCommentController::class, 'store'])->name('home.comments.stroe');
+Route::get('/add-to-wishlist/{product}', [WishlistController::class, 'add'])->name('home.whishlist.add');
+Route::get('/remove-from-wishlist/{product}', [WishlistController::class, 'remove'])->name('home.wishlist.remove');
 
 Route::get('/admin-panel/dashboard', function () {
     return view('admin.dashboard');
@@ -72,6 +75,7 @@ Route::post('/resend-otp', [AuthController::class, 'resendOtp']);
 Route::prefix('profile')->name('home.')->group(function () {
     Route::get('/', [UserProfileController::class, 'index'])->name('users_profile.index');
     Route::get('/comments', [HomeCommentController::class, 'usersProfileIndex'])->name('comments.users_profile.index');
+    Route::get('/wishlist', [WishlistController::class, 'usersProfileIndex'])->name('wishlist.users_profile.index');
 });
 
 Route::get('/test', function () {
