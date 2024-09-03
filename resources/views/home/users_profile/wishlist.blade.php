@@ -60,7 +60,7 @@
                                                                         <a
                                                                             href="{{ route('home.products.show', ['product' => $item->product->slug]) }}">
                                                                             <img width="100"
-                                                                                src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $item->product->primary_image) }}"
+                                                                                src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $item->product->primary_image) }}"
                                                                                 alt="">
                                                                         </a>
                                                                     </td>

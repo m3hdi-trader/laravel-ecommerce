@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-12 col-md-3 mb-5">
                     <div class="card">
-                        <img class="card-img-top" src="{{ url(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $product->primary_image) }}"
+                        <img class="card-img-top" src="{{ url(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}"
                             alt="alt="{{ $product->name }}">
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 @foreach ($product->images as $image)
                     <div class="col-md-3">
                         <div class="card">
-                            <img class="card-img-top" src="{{ url(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $image->image) }}"
+                            <img class="card-img-top" src="{{ url(env('PRODUCT_IMAGES_UPLOAD_PATH') . $image->image) }}"
                                 alt="{{ $product->name }}">
                             <div class="card-body text-center">
                                 <form action="{{ route('admin.product.image.destroy', ['product' => $product->id]) }}"

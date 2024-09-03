@@ -16,13 +16,13 @@ class ProductImageController extends Controller
     {
         $fileNamePrimaryImage = UploadImages::generateFileName($primaryImage->getClientOriginalName());
 
-        $primaryImage->move(public_path(env('PRODUCT_IMAGES_UPLOAD_PAHT')), $fileNamePrimaryImage);
+        $primaryImage->move(public_path(env('PRODUCT_IMAGES_UPLOAD_PATH')), $fileNamePrimaryImage);
 
         $fileNameImages = [];
         foreach ($images as $image) {
             $fileNameImage = UploadImages::generateFileName($image->getClientOriginalName());
 
-            $image->move(public_path(env('PRODUCT_IMAGES_UPLOAD_PAHT')), $fileNameImage);
+            $image->move(public_path(env('PRODUCT_IMAGES_UPLOAD_PATH')), $fileNameImage);
 
             array_push($fileNameImages, $fileNameImage);
         }
@@ -78,7 +78,7 @@ class ProductImageController extends Controller
 
                 $fileNamePrimaryImage = UploadImages::generateFileName($request->primary_image->getClientOriginalName());
 
-                $request->primary_image->move(public_path(env('PRODUCT_IMAGES_UPLOAD_PAHT')), $fileNamePrimaryImage);
+                $request->primary_image->move(public_path(env('PRODUCT_IMAGES_UPLOAD_PATH')), $fileNamePrimaryImage);
 
                 $product->update([
                     'primary_image' => $fileNamePrimaryImage
@@ -90,7 +90,7 @@ class ProductImageController extends Controller
                 foreach ($request->images as $image) {
                     $fileNameImage = UploadImages::generateFileName($image->getClientOriginalName());
 
-                    $image->move(public_path(env('PRODUCT_IMAGES_UPLOAD_PAHT')), $fileNameImage);
+                    $image->move(public_path(env('PRODUCT_IMAGES_UPLOAD_PATH')), $fileNameImage);
 
                     ProductImage::create([
                         'product_id' => $product->id,

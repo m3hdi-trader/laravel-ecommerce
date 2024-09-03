@@ -142,13 +142,13 @@
                                                     class="fas fa-heart" style="color: red"></i>
                                             </a>
                                         @else
-                                            <a href="{{ route('home.whishlist.add', ['product' => $product->id]) }}"><i
+                                            <a href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"><i
                                                     class="sli sli-heart"></i>
 
                                             </a>
                                         @endif
                                     @else
-                                        <a href="{{ route('home.whishlist.add', ['product' => $product->id]) }}"><i
+                                        <a href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"><i
                                                 class="sli sli-heart"></i>
                                         </a>
                                     @endauth
@@ -185,23 +185,23 @@
                     <div class="product-details-img">
                         <div class="zoompro-border zoompro-span">
                             <img class="zoompro"
-                                src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $product->primary_image) }}"
-                                data-zoom-image="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $product->primary_image) }}"
+                                src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}"
+                                data-zoom-image="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}"
                                 alt="" />
 
                         </div>
                         <div id="gallery" class="mt-20 product-dec-slider">
-                            <a data-image="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $product->primary_image) }}"
-                                data-zoom-image="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $product->primary_image) }}">
+                            <a data-image="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}"
+                                data-zoom-image="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}">
                                 <img width="90"
-                                    src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $product->primary_image) }}"
+                                    src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}"
                                     alt="">
                             </a>
                             @foreach ($product->images as $image)
-                                <a data-image="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $image->image) }}"
-                                    data-zoom-image="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $image->image) }}">
+                                <a data-image="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $image->image) }}"
+                                    data-zoom-image="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $image->image) }}">
                                     <img width="90"
-                                        src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $image->image) }}"
+                                        src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $image->image) }}"
                                         alt="">
                                 </a>
                             @endforeach

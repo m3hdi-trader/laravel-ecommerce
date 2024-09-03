@@ -156,7 +156,7 @@
                 <div class="col-md-3">
                     <div class="card">
                         <img class="card-img-top"
-                            src="{{ url(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $product->primary_image) }}"
+                            src="{{ url(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}"
                             alt="{{ $product->name }}">
                     </div>
                 </div>
@@ -168,7 +168,7 @@
                 @foreach ($images as $image)
                     <div class="col-md-3">
                         <div class="card">
-                            <img class="card-img-top" src="{{ url(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $image->image) }}"
+                            <img class="card-img-top" src="{{ url(env('PRODUCT_IMAGES_UPLOAD_PATH') . $image->image) }}"
                                 alt="{{ $product->name }}">
 
                         </div>

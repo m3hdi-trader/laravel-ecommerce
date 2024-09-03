@@ -261,7 +261,7 @@
                                                 <div class="ht-product-image-wrap">
                                                     <a href="{{ route('home.products.show', ['product' => $product->slug]) }}"
                                                         class="ht-product-image">
-                                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $product->primary_image) }}"
+                                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}"
                                                             alt="{{ $product->name }}" />
                                                     </a>
                                                     <div class="ht-product-action">
@@ -282,14 +282,14 @@
                                                                         </a>
                                                                     @else
                                                                         <a
-                                                                            href="{{ route('home.whishlist.add', ['product' => $product->id]) }}"><i
+                                                                            href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"><i
                                                                                 class="sli sli-heart"></i>
 
                                                                         </a>
                                                                     @endif
                                                                 @else
                                                                     <a
-                                                                        href="{{ route('home.whishlist.add', ['product' => $product->id]) }}"><i
+                                                                        href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"><i
                                                                             class="sli sli-heart"></i>
                                                                     </a>
                                                                 @endauth
@@ -465,13 +465,13 @@
                                                         </a>
                                                     @else
                                                         <a
-                                                            href="{{ route('home.whishlist.add', ['product' => $product->id]) }}"><i
+                                                            href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"><i
                                                                 class="sli sli-heart"></i>
 
                                                         </a>
                                                     @endif
                                                 @else
-                                                    <a href="{{ route('home.whishlist.add', ['product' => $product->id]) }}"><i
+                                                    <a href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"><i
                                                             class="sli sli-heart"></i>
                                                     </a>
                                                 @endauth
@@ -512,12 +512,12 @@
                             <div class="col-md-5 col-sm-12 col-xs-12">
                                 <div class="tab-content quickview-big-img">
                                     <div id="pro-primary-{{ $product->id }}" class="tab-pane fade show active">
-                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $product->primary_image) }}"
+                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}"
                                             alt="" />
                                     </div>
                                     @foreach ($product->images as $image)
                                         <div id="pro-{{ $image->id }}" class="tab-pane fade">
-                                            <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $image->image) }}"
+                                            <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $image->image) }}"
                                                 alt="" />
                                         </div>
                                     @endforeach
@@ -529,11 +529,11 @@
                                 <div class="quickview-wrap mt-15">
                                     <div class="quickview-slide-active owl-carousel nav nav-style-2" role="tablist">
                                         <a class="active" data-toggle="tab" href="#pro-primary-{{ $product->id }}"><img
-                                                src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $product->primary_image) }}"
+                                                src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}"
                                                 alt="" /></a>
                                         @foreach ($product->images as $image)
                                             <a data-toggle="tab" href="#pro-{{ $image->id }}"><img
-                                                    src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PAHT') . $image->image) }}"
+                                                    src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $image->image) }}"
                                                     alt="" /></a>
                                         @endforeach
 

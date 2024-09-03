@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 use App\Http\Controllers\Home\CommentController as HomeCommentController;
+use App\Http\Controllers\Home\CompareController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
 use App\Http\Controllers\Home\UserProfileController;
@@ -35,8 +36,14 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/categories/{category:slug}', [HomeCategoryController::class, 'show'])->name('home.categories.show');
 Route::get('/products/{product:slug}', [HomeProductController::class, 'show'])->name('home.products.show');
 Route::post('/comments/{product}', [HomeCommentController::class, 'store'])->name('home.comments.stroe');
-Route::get('/add-to-wishlist/{product}', [WishlistController::class, 'add'])->name('home.whishlist.add');
+
+Route::get('/add-to-wishlist/{product}', [WishlistController::class, 'add'])->name('home.wishlist.add');
 Route::get('/remove-from-wishlist/{product}', [WishlistController::class, 'remove'])->name('home.wishlist.remove');
+
+Route::get('/compare', [CompareController::class, 'index'])->name('home.compare.index');
+Route::get('/add-to-compare/{product}', [CompareController::class, 'add'])->name('home.compare.add');
+Route::get('/remove-compare/{product}', [CompareController::class, 'remove'])->name('home.compare.remove');
+
 
 Route::get('/admin-panel/dashboard', function () {
     return view('admin.dashboard');
@@ -79,6 +86,5 @@ Route::prefix('profile')->name('home.')->group(function () {
 });
 
 Route::get('/test', function () {
-    $user = User::find(1);
-    $user->notify(new OTPSms(1234));
+    dd(session()->get('compareProduct'));
 });
