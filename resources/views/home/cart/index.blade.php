@@ -131,8 +131,9 @@
                                     </div>
                                     <div class="discount-code">
                                         <p> لورم ایپسوم متن ساختگی با تولید سادگی </p>
-                                        <form>
-                                            <input type="text" required="" name="name">
+                                        <form action="{{ route('home.coupons.check') }}" method="POST">
+                                            @csrf
+                                            <input type="text" required="" name="code">
                                             <button class="cart-btn-2" type="submit"> ثبت </button>
                                         </form>
                                     </div>
@@ -163,6 +164,18 @@
                                         </h5>
                                     @endif
 
+
+                                    @if (session()->has('coupon'))
+                                        <hr>
+                                        <h5>
+                                            مبلغ تخفیف کالا ها :
+                                            <span style="color: red">
+                                                {{ number_format(session()->get('coupon.amount')) }}
+                                                تومان
+                                            </span>
+                                        </h5>
+                                    @endif
+
                                     <div class="total-shipping">
                                         <h5>
                                             هزینه ارسال :
@@ -182,7 +195,7 @@
                                     <h4 class="grand-totall-title">
                                         جمع کل:
                                         <span>
-                                            {{ number_format(\Cart::getTotal() + CartTotalDeliveryAmount()) }}
+                                            {{ number_format(CartTotalAmount()) }}
                                             تومان
                                         </span>
                                     </h4>

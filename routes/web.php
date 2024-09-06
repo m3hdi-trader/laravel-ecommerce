@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\TagController;
@@ -49,6 +50,7 @@ Route::post('/add-to-cart', [CartController::class, 'add'])->name('home.cart.add
 Route::get('/remove-from-cart/{rowId}', [CartController::class, 'remove'])->name('home.cart.remove');
 Route::put('/cart', [CartController::class, 'update'])->name('home.cart.update');
 Route::put('/clear-cart', [CartController::class, 'clear'])->name('home.cart.clear');
+Route::get('/check-coupon', [CartController::class, 'checkCoupon'])->name('home.coupons.check');
 
 
 Route::get('/admin-panel/dashboard', function () {
@@ -64,6 +66,9 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('banners', BannerController::class);
     Route::resource('comments', CommentController::class);
+    Route::resource('coupons', CouponController::class);
+
+
     Route::get('/comments/{comment}/change-approve', [CommentController::class, 'changeApprove'])->name('comments.change-approve');
 
     // Get Category Attributes
