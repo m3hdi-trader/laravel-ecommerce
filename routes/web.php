@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
@@ -9,6 +11,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 use App\Http\Controllers\Home\CommentController as HomeCommentController;
 use App\Http\Controllers\Home\CompareController;
@@ -16,10 +19,6 @@ use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
 use App\Http\Controllers\Home\UserProfileController;
 use App\Http\Controllers\Home\WishlistController;
-use App\Models\User;
-use App\Notifications\OTPSms;
-use Ghasedak\GhasedakApi;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +41,14 @@ Route::get('/remove-from-wishlist/{product}', [WishlistController::class, 'remov
 
 Route::get('/compare', [CompareController::class, 'index'])->name('home.compare.index');
 Route::get('/add-to-compare/{product}', [CompareController::class, 'add'])->name('home.compare.add');
-Route::get('/remove-compare/{product}', [CompareController::class, 'remove'])->name('home.compare.remove');
+Route::get('/remove-from-compare/{product}', [CompareController::class, 'remove'])->name('home.compare.remove');
+
+
+Route::get('/cart', [CartController::class, 'index'])->name('home.cart.index');
+Route::post('/add-to-cart', [CartController::class, 'add'])->name('home.cart.add');
+Route::get('/remove-from-cart/{rowId}', [CartController::class, 'remove'])->name('home.cart.remove');
+Route::put('/cart', [CartController::class, 'update'])->name('home.cart.update');
+Route::put('/clear-cart', [CartController::class, 'clear'])->name('home.cart.clear');
 
 
 Route::get('/admin-panel/dashboard', function () {
@@ -86,5 +92,6 @@ Route::prefix('profile')->name('home.')->group(function () {
 });
 
 Route::get('/test', function () {
-    dd(session()->get('compareProduct'));
+    // \Cart::clear();
+    dd(\Cart::getContent());
 });

@@ -8,6 +8,7 @@
         "php": "^8.0",
         "bootstrap-select/bootstrap-select": "1.13.18",
         "cviebrock/eloquent-sluggable": "9.0.0",
+        "darryldecode/cart": "^4.2",
         "fruitcake/laravel-cors": "^2.0.5",
         "ghasedak/laravel": "1.0.9",
         "guzzlehttp/guzzle": "^7.2",
@@ -33,7 +34,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files" : [
+            "app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
