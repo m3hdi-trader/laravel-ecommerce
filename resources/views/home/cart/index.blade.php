@@ -81,7 +81,7 @@
                                                     </span>
                                                     @if ($item->attributes->is_sale)
                                                         <p style="font-size: 12px ; color:red">
-                                                            {{ $item->attributes->persent_sale }}%
+                                                            {{ $item->attributes->percent_sale }}%
                                                             تخفیف
                                                         </p>
                                                     @endif
@@ -148,27 +148,26 @@
                                     <h5>
                                         مبلغ سفارش :
                                         <span>
-                                            {{ number_format(\Cart::getTotal() + CartTotalSaleAmount()) }}
+                                            {{ number_format(\Cart::getTotal() + cartTotalSaleAmount()) }}
                                             تومان
                                         </span>
                                     </h5>
 
-                                    @if (CartTotalSaleAmount() > 0)
+                                    @if (cartTotalSaleAmount() > 0)
                                         <hr>
                                         <h5>
                                             مبلغ تخفیف کالا ها :
                                             <span style="color: red">
-                                                {{ number_format(CartTotalSaleAmount()) }}
+                                                {{ number_format(cartTotalSaleAmount()) }}
                                                 تومان
                                             </span>
                                         </h5>
                                     @endif
 
-
                                     @if (session()->has('coupon'))
                                         <hr>
                                         <h5>
-                                            مبلغ تخفیف کالا ها :
+                                            مبلغ کد تخفیف :
                                             <span style="color: red">
                                                 {{ number_format(session()->get('coupon.amount')) }}
                                                 تومان
@@ -179,13 +178,13 @@
                                     <div class="total-shipping">
                                         <h5>
                                             هزینه ارسال :
-                                            @if (CartTotalDeliveryAmount() == 0)
+                                            @if (cartTotalDeliveryAmount() == 0)
                                                 <span style="color: red">
                                                     رایگان
                                                 </span>
                                             @else
                                                 <span>
-                                                    {{ number_format(CartTotalDeliveryAmount()) }}
+                                                    {{ number_format(cartTotalDeliveryAmount()) }}
                                                     تومان
                                                 </span>
                                             @endif
@@ -195,11 +194,11 @@
                                     <h4 class="grand-totall-title">
                                         جمع کل:
                                         <span>
-                                            {{ number_format(CartTotalAmount()) }}
+                                            {{ number_format(cartTotalAmount()) }}
                                             تومان
                                         </span>
                                     </h4>
-                                    <a href="#"> ادامه فرآیند خرید </a>
+                                    <a href="{{ route('home.orders.checkout') }}"> ادامه فرآیند خرید </a>
                                 </div>
                             </div>
                         </div>

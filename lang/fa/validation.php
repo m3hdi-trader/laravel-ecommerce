@@ -122,7 +122,7 @@ return [
         'password_confirmation' => 'تکرار رمز عبور',
         'city'                  => 'شهر',
         'country'               => 'کشور',
-        'address'               => 'آدرس پستی',
+        'address'               => 'آدرس',
         'phone'                 => 'شماره ثابت',
         'cellphone'             => 'شماره همراه',
         'age'                   => 'سن',
@@ -164,7 +164,9 @@ return [
         'tag_ids' => 'تگ',
         'primary_image' => 'تصویر اصلی',
         'category_id' => 'دسته بندی',
-        'images' => 'تصاویر'
+        'images' => 'تصاویر',
+        'postal_code' => 'کد  بستی',
+        'city_id' => 'شهر'
 
 
     ],

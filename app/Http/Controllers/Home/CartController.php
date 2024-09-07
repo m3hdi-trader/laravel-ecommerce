@@ -6,6 +6,8 @@ use Cart;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductVariation;
+use App\Models\Province;
+use App\Models\UserAddress;
 use Darryldecode\Cart\Cart as CartCart;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -104,5 +106,18 @@ class CartController extends Controller
         } else {
             alert()->success($result['success'], 'با تشکر');
         }
+    }
+
+    public function checkout()
+    {
+        if (\Cart::isEmpty()) {
+            alert()->warning('سبد خرید شما خالی میباشد', 'دقت کنید');
+            return redirect()->route('home.index');
+        }
+
+        $addresses = UserAddress::where('user_id', auth()->id())->get();
+        $provinces = Province::all();
+
+        return view('home.cart.checkout', compact('addresses', 'provinces'));
     }
 }

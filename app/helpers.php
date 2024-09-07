@@ -1,10 +1,37 @@
 <?php
 
-use App\Models\Coupon;
-use App\Models\Order;
 use Carbon\Carbon;
+use App\Models\City;
+use App\Models\Order;
+use App\Models\Coupon;
+use App\Models\Province;
 
-function CartTotalSaleAmount()
+function generateFileName($name)
+{
+    $year = Carbon::now()->year;
+    $month = Carbon::now()->month;
+    $day = Carbon::now()->day;
+    $hour = Carbon::now()->hour;
+    $minute = Carbon::now()->minute;
+    $second = Carbon::now()->second;
+    $microsecond = Carbon::now()->microsecond;
+    return $year . '_' . $month . '_' . $day . '_' . $hour . '_' . $minute . '_' . $second . '_' . $microsecond . '_' . $name;
+}
+
+function convertShamsiToGregorianDate($date)
+{
+    if ($date == null) {
+        return null;
+    }
+    $pattern = "/[-\s]/";
+    $shamsiDateSplit = preg_split($pattern, $date);
+
+    $arrayGergorianDate = verta()->getGregorian($shamsiDateSplit[0], $shamsiDateSplit[1], $shamsiDateSplit[2]);
+
+    return implode("-", $arrayGergorianDate) . " " . $shamsiDateSplit[3];
+}
+
+function cartTotalSaleAmount()
 {
     $cartTotalSaleAmount = 0;
     foreach (\Cart::getContent() as $item) {
@@ -16,7 +43,7 @@ function CartTotalSaleAmount()
     return $cartTotalSaleAmount;
 }
 
-function CartTotalDeliveryAmount()
+function cartTotalDeliveryAmount()
 {
     $cartTotalDeliveryAmount = 0;
     foreach (\Cart::getContent() as $item) {
@@ -26,16 +53,16 @@ function CartTotalDeliveryAmount()
     return $cartTotalDeliveryAmount;
 }
 
-function CartTotalAmount()
+function cartTotalAmount()
 {
     if (session()->has('coupon')) {
-        if (session()->get('coupon.amount') > (\Cart::getTotal() + CartTotalDeliveryAmount())) {
+        if (session()->get('coupon.amount') > (\Cart::getTotal() + cartTotalDeliveryAmount())) {
             return 0;
         } else {
-            return (\Cart::getTotal() + CartTotalDeliveryAmount()) - session()->get('coupon.amount');
+            return (\Cart::getTotal() + cartTotalDeliveryAmount()) - session()->get('coupon.amount');
         }
     } else {
-        \Cart::getTotal() + CartTotalDeliveryAmount();
+        return \Cart::getTotal() + cartTotalDeliveryAmount();
     }
 }
 
@@ -47,17 +74,29 @@ function checkCoupon($code)
         return ['error' => 'کد تخفیف وارد شده وجود ندارد'];
     }
 
-    if (Order::where('user_id', auth()->id())->where('coupon_id', $coupon->id)->where('payment_status', 1)->exists()) {
+    if (Order::where('user_id', auth()->id())->where('coupon_id', $coupon->code)->where('payment_status', 1)->exists()) {
         return ['error' => 'شما قبلا از این کد تخفیف استفاده کرده اید'];
     }
 
     if ($coupon->getRawOriginal('type') == 'amount') {
         session()->put('coupon', ['code' => $coupon->code, 'amount' => $coupon->amount]);
     } else {
-        $total = \cart::getTotal();
+        $total = \Cart::getTotal();
+
         $amount = (($total * $coupon->percentage) / 100) > $coupon->max_percentage_amount ? $coupon->max_percentage_amount : (($total * $coupon->percentage) / 100);
-        session()->put('coupon', ['code' => $coupon->code, 'amount' => $coupon->amount]);
+
+        session()->put('coupon', ['code' => $coupon->code, 'amount' => $amount]);
     }
 
-    return ['success' => 'کد تخفیف برای شما ثبت شد'];
+    return ['success' => 'کد نخفیف برای شما ثبت شد'];
+}
+
+function province_name($provinceId)
+{
+    return Province::findOrFail($provinceId)->name;
+}
+
+function city_name($cityId)
+{
+    return City::findOrFail($cityId)->name;
 }
