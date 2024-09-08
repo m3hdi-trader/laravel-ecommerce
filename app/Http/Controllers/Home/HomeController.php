@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\ContactUs;
 use App\Models\Product;
+use App\Models\Setting;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -30,5 +33,36 @@ class HomeController extends Controller
         // dd($t);
 
         return view('home.index', compact('sliders', 'indexTopBanners', 'indexBottomBanners', 'products', 'category'));
+    }
+
+    public function aboutUs()
+    {
+        $bottomBanners = Banner::where('type', 'index_bottom')->where('is_active', 1)->orderBy('priority')->get();
+        return view('home.about-us', compact('bottomBanners'));
+    }
+
+    public function contactUs()
+    {
+        $setting = Setting::findOrFail(1);
+        return view('home.contact-us', compact('setting'));
+    }
+
+    public function contactUsForm(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|min:3|max:50',
+            'email' => 'required|email',
+            'subject' => 'required|string|min:3|max:100',
+            'text' => 'required|string|min:3|max:3000',
+        ]);
+        ContactUs::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'text' => $request->text,
+        ]);
+
+        Alert::success("پیام شما با موفقیت ثبت شد", 'با تشکر');
+        return redirect()->back();
     }
 }

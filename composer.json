@@ -19,7 +19,8 @@
         "laravel/socialite": "^5.15",
         "laravel/tinker": "^2.7",
         "realrashid/sweet-alert": "5.1.0",
-        "sadegh19b/laravel-persian-validation": "^1.5"
+        "sadegh19b/laravel-persian-validation": "^1.5",
+        "timehunter/laravel-google-recaptcha-v3": "~2.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -110,6 +110,11 @@ Route::prefix('profile')->name('home.')->group(function () {
 
 Route::get('/get-province-cities-list', [AddressController::class, 'getProvinceCitiesList']);
 
+Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('home.about-us');
+Route::get('/contact-us', [HomeController::class, 'contactUs'])->name('home.contact-us');
+Route::post('/contact-us-form', [HomeController::class, 'contactUsForm'])->name('home.contact-us.form');
+
+
 
 Route::get('/test', function () {
     // \Cart::clear();

@@ -13,6 +13,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('/css/home.css') }}" rel="stylesheet">
+    @yield('style')
 
 </head>
 
@@ -50,6 +51,8 @@
 
 
     @yield('script')
+
+    {!! GoogleReCaptchaV3::init() !!}
 
 
 </body>
