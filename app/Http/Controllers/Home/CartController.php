@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Cart;
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\Province;
@@ -117,7 +118,8 @@ class CartController extends Controller
 
         $addresses = UserAddress::where('user_id', auth()->id())->get();
         $provinces = Province::all();
+        $cities = City::all();
 
-        return view('home.cart.checkout', compact('addresses', 'provinces'));
+        return view('home.cart.checkout', compact('addresses', 'provinces', 'cities'));
     }
 }
