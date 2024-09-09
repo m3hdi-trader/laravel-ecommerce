@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\ContactUs;
 use App\Models\Product;
 use App\Models\Setting;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -15,6 +16,16 @@ class HomeController extends Controller
 {
     public function index()
     {
+
+        SEOTools::setTitle('Home');
+        SEOTools::setDescription('This is my page description');
+        SEOTools::setCanonical('https://codecasts.com.br/lesson');
+
+        SEOTools::opengraph()->setDescription('mohammad');
+        SEOTools::opengraph()->setUrl(route('home.index'));
+        SEOTools::opengraph()->addProperty('type', 'articles');
+        SEOTools::twitter()->setSite('@LuizVinicius73');
+        SEOTools::jsonLd()->addImage('https://codecasts.com.br/img/logo.jpg');
 
         $sliders = Banner::where('type', 'slider')->where('is_active', 1)->orderBy('priority')->get();
         $indexTopBanners = Banner::where('type', 'index_top')->where('is_active', 1)->orderBy('priority')->get();

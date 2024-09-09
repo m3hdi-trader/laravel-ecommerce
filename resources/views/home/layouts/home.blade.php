@@ -15,6 +15,8 @@
     <link href="{{ asset('/css/home.css') }}" rel="stylesheet">
     @yield('style')
 
+
+    {!! SEO::generate() !!}
 </head>
 
 <body>

@@ -20,6 +20,7 @@ use App\Http\Controllers\Home\CompareController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\PaymentController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
+use App\Http\Controllers\Home\SiteMapController;
 use App\Http\Controllers\Home\UserProfileController;
 use App\Http\Controllers\Home\WishlistController;
 
@@ -73,6 +74,7 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::resource('banners', BannerController::class);
     Route::resource('comments', CommentController::class);
     Route::resource('coupons', CouponController::class);
+    Route::resource('users', UserController::class);
 
 
     Route::get('/comments/{comment}/change-approve', [CommentController::class, 'changeApprove'])->name('comments.change-approve');
@@ -113,6 +115,11 @@ Route::get('/get-province-cities-list', [AddressController::class, 'getProvinceC
 Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('home.about-us');
 Route::get('/contact-us', [HomeController::class, 'contactUs'])->name('home.contact-us');
 Route::post('/contact-us-form', [HomeController::class, 'contactUsForm'])->name('home.contact-us.form');
+
+
+Route::get('/sitemap', [SiteMapController::class, 'index'])->name('home.sitemap.index');
+
+
 
 
 

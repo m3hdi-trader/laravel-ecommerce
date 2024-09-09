@@ -110,7 +110,6 @@
                             <div id="contact_us_id"></div>
                             <button class="submit" type="submit"> ارسال پیام </button>
                         </form>
-                        {!! GoogleReCaptchaV3::render(['contact_us_id' => 'contact_us']) !!}
                     </div>
                 </div>
             </div>
