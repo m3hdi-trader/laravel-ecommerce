@@ -8,9 +8,12 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductImageController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Home\AddressController;
 use App\Http\Controllers\Home\CartController;
@@ -75,6 +78,8 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::resource('comments', CommentController::class);
     Route::resource('coupons', CouponController::class);
     Route::resource('users', UserController::class);
+    Route::resource('permissions', PermissionController::class);
+    Route::resource('roles', RoleController::class);
 
 
     Route::get('/comments/{comment}/change-approve', [CommentController::class, 'changeApprove'])->name('comments.change-approve');

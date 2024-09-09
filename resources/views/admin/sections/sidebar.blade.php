@@ -21,6 +21,26 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+    <div class="sidebar-heading">
+        کاربران
+    </div>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseusers"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-users"></i>
+            <span> کاربران </span>
+        </a>
+        <div id="collapseusers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('admin.users.index') }}">لیست کاربران</a>
+                <a class="collapse-item" href="{{ route('admin.roles.index') }}">گروه کاربری</a>
+                <a class="collapse-item" href="{{ route('admin.permissions.index') }}">مجوز ها</a>
+            </div>
+        </div>
+    </li>
+
+    <hr class="sidebar-divider">
+
     <!-- Heading -->
     <div class="sidebar-heading">
         فروشگاه
