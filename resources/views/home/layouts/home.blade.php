@@ -23,7 +23,12 @@
 
     {{-- @yield('content') --}}
 
-    <div class="wrapper">
+    <div class="wrapper text-center">
+
+        <div id="overlayer"></div>
+        <span class="loader">
+            <span class="loader-inner"></span>
+        </span>
 
         @include('home.sections.header')
 
@@ -54,7 +59,14 @@
 
     @yield('script')
 
-    {!! GoogleReCaptchaV3::init() !!}
+    <script>
+        $(window).load(function() {
+            $(".loader").delay(2000).fadeOut("slow");
+            $("#overlayer").delay(2000).fadeOut("slow");
+        })
+    </script>
+
+
 
 
 </body>
